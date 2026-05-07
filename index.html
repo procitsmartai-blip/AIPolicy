@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GAR AI Procurement Guide — G-GCC-P-018</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#ffffff;--bg2:#f5f4f1;--bg3:#eceae4;
+  --text:#1a1814;--text2:#5a5855;--text3:#8a8880;
+  --border:#e0ddd6;--border2:#ccc9c2;
+  --r:8px;--rlg:12px;
+  --navy:#0C447C;--navy-bg:#E6F1FB;--navy-bd:#B5D4F4;--navy-mid:#185FA5;--navy-dk:#042C53;
+  --teal:#085041;--teal-bg:#E1F5EE;--teal-bd:#9FE1CB;--teal-mid:#0F6E56;
+  --amber:#633806;--amber-bg:#FAEEDA;--amber-bd:#FAC775;--amber-mid:#854F0B;--amber-ac:#EF9F27;
+  --red:#791F1F;--red-bg:#FCEBEB;--red-bd:#F7C1C1;--red-mid:#A32D2D;
+  --green:#27500A;--green-bg:#EAF3DE;--green-bd:#C0DD97;--green-mid:#3B6D11;--green-ac:#639922;
+  --purple:#534AB7;--purple-bg:#EEEDFE;--purple-bd:#AFA9EC;
+}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--bg2);color:var(--text);font-size:15px;line-height:1.65;min-height:100vh}
+.topnav{position:sticky;top:0;z-index:100;background:var(--navy-dk);border-bottom:1px solid rgba(255,255,255,0.1)}
+.topnav-inner{max-width:1040px;margin:0 auto;padding:0 2rem;display:flex;align-items:center}
+.nav-logo{padding:0.875rem 1.5rem 0.875rem 0;border-right:1px solid rgba(255,255,255,0.12)}
+.nav-logo strong{display:block;font-family:'Lora',serif;font-size:14px;color:#fff;font-weight:500}
+.nav-logo span{display:block;font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.04em;margin-top:1px}
+.nav-tabs{display:flex;overflow-x:auto;flex:1}
+.nav-tab{padding:0.875rem 1.25rem;font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;font-family:'DM Sans',sans-serif;font-weight:500}
+.nav-tab:hover{color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.04)}
+.nav-tab.on{color:#fff;border-bottom-color:rgba(255,255,255,0.55)}
+.shell{max-width:1040px;margin:0 auto;padding:0 2rem 5rem}
+.pane{display:none;padding-top:2rem}.pane.on{display:block}
+.card{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);padding:1rem 1.125rem}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.mb{margin-bottom:1rem}.gap{margin-bottom:12px}
+.clabel{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;margin-bottom:0.5rem}
+.cn{color:var(--navy-mid)}.cr{color:var(--red-mid)}.ct{color:var(--teal-mid)}
+ul.pts{list-style:none;display:flex;flex-direction:column;gap:5px}
+ul.pts li{font-size:13px;color:var(--text);line-height:1.5;padding-left:1rem;position:relative}
+ul.pts li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3px;border-radius:50%;background:var(--border2)}
+.flag-r{display:inline-block;background:var(--red-bg);border:0.5px solid var(--red-bd);border-radius:3px;padding:1px 6px;font-size:10px;font-weight:600;color:var(--red-mid)}
+.flag-a{display:inline-block;background:var(--amber-bg);border:0.5px solid var(--amber-bd);border-radius:3px;padding:1px 6px;font-size:10px;font-weight:600;color:var(--amber-mid)}
+.alert{background:var(--red-bg);border:0.5px solid var(--red-bd);border-radius:var(--r);padding:0.75rem 1rem;font-size:13px;color:var(--red);line-height:1.55;margin-bottom:1rem;display:flex;gap:8px}
+.alert::before{content:"!";min-width:18px;height:18px;border-radius:50%;background:var(--red-mid);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.info{background:var(--navy-bg);border:0.5px solid var(--navy-bd);border-radius:var(--r);padding:0.75rem 1rem;font-size:13px;color:var(--navy);line-height:1.55;margin-bottom:1rem}
+.sec-kicker{font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--text3);margin-bottom:0.25rem}
+.sec-title{font-family:'Lora',serif;font-size:22px;font-weight:600;color:var(--navy-dk);margin-bottom:0.375rem}
+.sec-sub{font-size:13px;color:var(--text2);margin-bottom:1.5rem}
+/* def block */
+.def-block{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);overflow:hidden;margin-bottom:1.25rem}
+.def-head{padding:0.625rem 1rem;background:var(--bg2);border-bottom:0.5px solid var(--border);font-size:11px;font-weight:500;color:var(--text2)}
+.def-purpose{padding:0.875rem 1rem;font-size:13px;color:var(--text);line-height:1.65;border-bottom:0.5px solid var(--border)}
+.def-purpose strong{font-weight:500}
+.def-ai-def{padding:0.75rem 1rem;border-bottom:0.5px solid var(--border)}
+.def-ai-def .lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:500;color:var(--text3);margin-bottom:0.375rem}
+.def-ai-def p{font-size:13px;color:var(--text2);line-height:1.55}
+.def-types{display:grid;grid-template-columns:1fr 1fr}
+.def-type{padding:0.75rem 1rem;border-right:0.5px solid var(--border);border-bottom:0.5px solid var(--border)}
+.def-type:nth-child(even){border-right:none}.def-type:nth-last-child(-n+2){border-bottom:none}
+.def-type-name{font-size:12px;font-weight:600;color:var(--text);margin-bottom:4px}
+.def-type-desc{font-size:12px;color:var(--text2);line-height:1.45}
+.def-type-tag{display:inline-block;font-size:10px;font-weight:500;padding:2px 6px;border-radius:3px;margin-top:5px}
+.tag-it{background:var(--navy-bg);color:var(--navy-mid);border:0.5px solid var(--navy-bd)}
+.tag-saas{background:var(--purple-bg);color:var(--purple);border:0.5px solid var(--purple-bd)}
+.tag-exec{background:var(--amber-bg);color:var(--amber-mid);border:0.5px solid var(--amber-bd)}
+/* rules */
+.rule3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:1.25rem}
+.rule{border-radius:var(--rlg);padding:1rem;border:0.5px solid}
+.rule.r{background:var(--red-bg);border-color:var(--red-bd)}.rule.g{background:var(--green-bg);border-color:var(--green-bd)}.rule.a{background:var(--amber-bg);border-color:var(--amber-bd)}
+.rule h3{font-size:13px;font-weight:600;margin-bottom:5px}
+.rule.r h3{color:var(--red-mid)}.rule.g h3{color:var(--green)}.rule.a h3{color:var(--amber-mid)}
+.rule p{font-size:12px;line-height:1.5}
+.rule.r p{color:var(--red)}.rule.g p{color:var(--green)}.rule.a p{color:var(--amber)}
+/* allowed */
+.allowed2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1.25rem}
+.ab{border:0.5px solid var(--border);border-radius:var(--rlg);overflow:hidden}
+.ab-head{padding:0.5rem 1rem;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;display:flex;align-items:center;gap:7px}
+.ab-head .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.ay .ab-head{background:var(--green-bg);color:var(--green)}.ay .ab-head .dot{background:var(--green-mid)}
+.an .ab-head{background:var(--red-bg);color:var(--red-mid)}.an .ab-head .dot{background:var(--red-mid)}
+.ab-body{background:var(--bg);padding:0.75rem 1rem;display:flex;flex-direction:column;gap:6px}
+.ab-item{font-size:12px;color:var(--text);line-height:1.45;padding-left:0.875rem;position:relative}
+.ab-item::before{content:"";position:absolute;left:0;top:6px;width:3px;height:3px;border-radius:50%}
+.ay .ab-item::before{background:var(--green-mid)}.an .ab-item::before{background:var(--red-mid)}
+/* flow */
+.flow-wrap{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);overflow:hidden;margin-top:1.5rem}
+.flow-head{padding:0.75rem 1.25rem;background:var(--bg2);border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.flow-head p{font-size:12px;font-weight:500;color:var(--text2)}.flow-head span{font-size:11px;color:var(--text3)}
+.flow-legend{display:flex;gap:1.25rem;padding:0.625rem 1.25rem;border-bottom:0.5px solid var(--border);flex-wrap:wrap}
+.fl-item{display:flex;align-items:center;gap:6px;font-size:11px;color:var(--text2)}
+.fl-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.flow-body{padding:1.25rem}
+.flow-row{display:grid;grid-template-columns:1fr 28px 1fr 28px 1fr;align-items:center}
+.fstep{border-radius:var(--r);padding:0.75rem 0.875rem;border:0.5px solid;position:relative;min-height:90px}
+.fstep-num{position:absolute;top:-9px;left:9px;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.fstep-actor{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;margin-bottom:5px}
+.fstep-action{font-size:12px;font-weight:600;line-height:1.3;margin-bottom:5px}
+.fstep-who{font-size:11px;line-height:1.4}
+.fs-bu{background:var(--navy-bg);border-color:var(--navy-bd)}
+.fs-bu .fstep-num{background:#378ADD;color:#fff}.fs-bu .fstep-actor{color:var(--navy-mid)}.fs-bu .fstep-action{color:var(--navy)}.fs-bu .fstep-who{color:var(--navy-mid)}
+.fs-it{background:var(--teal-bg);border-color:var(--teal-bd)}
+.fs-it .fstep-num{background:#1D9E75;color:#fff}.fs-it .fstep-actor{color:var(--teal-mid)}.fs-it .fstep-action{color:var(--teal)}.fs-it .fstep-who{color:var(--teal-mid)}
+.fs-gr{background:var(--amber-bg);border-color:var(--amber-bd);border-style:dashed}
+.fs-gr .fstep-num{background:var(--amber-ac);color:#fff}.fs-gr .fstep-actor{color:var(--amber-mid)}.fs-gr .fstep-action{color:var(--amber)}.fs-gr .fstep-who{color:var(--amber-mid)}
+.fs-ap{background:var(--green-bg);border-color:var(--green-bd)}
+.fs-ap .fstep-num{background:var(--green-ac);color:#fff}.fs-ap .fstep-actor{color:var(--green-mid)}.fs-ap .fstep-action{color:var(--green)}.fs-ap .fstep-who{color:var(--green-mid)}
+.farrow{display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:16px}.farrow-rev{transform:scaleX(-1)}
+.flow-drop{display:flex;justify-content:flex-end;margin:5px 0}
+.flow-drop-line{width:2px;height:24px;background:var(--border2);margin-right:calc(16.66% - 1px)}
+.at-wrap{margin-top:1.25rem;border:0.5px solid var(--border);border-radius:var(--r);overflow:hidden}
+.at-head{padding:0.5rem 1rem;background:var(--bg2);border-bottom:0.5px solid var(--border);font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em}
+.at-row{display:flex;align-items:flex-start;border-bottom:0.5px solid var(--border)}.at-row:last-child{border-bottom:none}
+.at-clf{padding:0.625rem 1rem;min-width:175px;border-right:0.5px solid var(--border);font-size:11px;font-weight:600;flex-shrink:0}
+.at-clf.std{color:var(--green);background:var(--green-bg)}.at-clf.hc{color:var(--navy-mid);background:var(--navy-bg)}.at-clf.hp{color:var(--amber-mid);background:var(--amber-bg)}.at-clf.hi{color:var(--red-mid);background:var(--red-bg)}
+.at-chain{padding:0.625rem 1rem;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.at-step{font-size:10px;font-weight:500;padding:2px 7px;border-radius:3px;border:0.5px solid;white-space:nowrap}
+.at-step.bu{background:var(--navy-bg);color:var(--navy-mid);border-color:var(--navy-bd)}
+.at-step.plus{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.at-step.ai{background:var(--red-bg);color:var(--red-mid);border-color:var(--red-bd)}
+.at-arr{font-size:11px;color:var(--text3)}
+/* committee */
+.comm-block{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);overflow:hidden;margin-bottom:1.25rem}
+.tb-banner{display:flex;align-items:flex-start;gap:8px;padding:0.625rem 1rem;border-bottom:0.5px solid var(--border)}
+.tb-navy{background:#dce8f6}.tb-teal{background:#d0ede5}.tb-amber{background:#fce8c8}
+.tbicon{font-size:9px;font-weight:800;padding:2px 7px;border-radius:3px;flex-shrink:0;margin-top:1px;letter-spacing:0.05em}
+.tb-navy .tbicon{background:var(--navy-bd);color:var(--navy)}.tb-teal .tbicon{background:var(--teal-bd);color:var(--teal)}.tb-amber .tbicon{background:var(--amber-bd);color:var(--amber)}
+.tbtext{font-size:12px;line-height:1.55}
+.tb-navy .tbtext{color:#1a3860}.tb-teal .tbtext{color:#0a4030}.tb-amber .tbtext{color:#5a3808}
+.tbtext strong{font-weight:600}
+.comm-head{padding:0.875rem 1rem;display:flex;align-items:flex-start;gap:12px;border-bottom:0.5px solid var(--border)}
+.ch-navy{background:var(--navy-bg)}.ch-teal{background:var(--teal-bg)}.ch-amber{background:var(--amber-bg)}
+.ch-icon{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.ch-navy .ch-icon{background:var(--navy-bd);color:var(--navy)}.ch-teal .ch-icon{background:var(--teal-bd);color:var(--teal)}.ch-amber .ch-icon{background:var(--amber-bd);color:var(--amber)}
+.ch-title{font-size:14px;font-weight:600;font-family:'Lora',serif}
+.ch-navy .ch-title{color:var(--navy)}.ch-teal .ch-title{color:var(--teal)}.ch-amber .ch-title{color:var(--amber)}
+.ch-desc{font-size:12px;margin-top:2px;color:var(--text2)}
+.comm-body{padding:1rem;background:var(--bg)}
+.legend{display:flex;gap:1.25rem;margin-bottom:0.75rem}
+.leg-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
+.leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
+.mtable{width:100%;border-collapse:collapse}
+.mtable th{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);padding:0.5rem 0.75rem;text-align:left;border-bottom:0.5px solid var(--border);font-weight:600;background:var(--bg2)}
+.mtable td{padding:0.625rem 0.75rem;border-bottom:0.5px solid var(--border);vertical-align:top;font-size:12px;line-height:1.45;color:var(--text2)}
+.mtable tr:last-child td{border-bottom:none}.mtable tr:hover td{background:var(--bg2)}
+.mname{font-weight:600;color:var(--text);margin-bottom:2px;font-size:12px}
+.mfn{font-size:10px;color:var(--text3);margin-top:1px}
+.pill{display:inline-block;font-size:10px;font-weight:500;padding:2px 7px;border-radius:10px}
+.pill-perm{background:var(--navy-bg);color:var(--navy-mid);border:0.5px solid var(--navy-bd)}
+.pill-relev{background:var(--teal-bg);color:var(--teal-mid);border:0.5px solid var(--teal-bd)}
+/* matrix */
+.matrix-wrap{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);overflow:hidden;margin-top:1.25rem}
+.matrix-head{padding:0.75rem 1rem;background:var(--bg2);border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.matrix-head p{font-size:12px;font-weight:500;color:var(--text2)}.matrix-head span{font-size:11px;color:var(--text3)}
+.mxtable{width:100%;border-collapse:collapse}
+.mxtable th{background:var(--bg2);padding:0.625rem 1rem;font-size:11px;font-weight:500;color:var(--text2);text-align:left;border-bottom:0.5px solid var(--border)}
+.mxtable th:not(:first-child){text-align:center}
+.mxtable td{padding:0.75rem 1rem;border-bottom:0.5px solid var(--border);font-size:13px;vertical-align:middle}
+.mxtable tr:last-child td{border-bottom:none}.mxtable tr:hover td{background:var(--bg2)}
+.clf-tag{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500}
+.clf-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.d-std{background:#639922}.d-hc{background:#185FA5}.d-hp{background:#BA7517}.d-hi{background:#E24B4A}
+.clf-tag.std{color:var(--green)}.clf-tag.hc{color:var(--navy-mid)}.clf-tag.hp{color:var(--amber-mid)}.clf-tag.hi{color:var(--red-mid)}
+.chk-cell{text-align:center}
+.chk-yes{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--green-bg);border:0.5px solid var(--green-bd)}
+.chk-yes svg{width:12px;height:12px;stroke:var(--green);stroke-width:2.5;fill:none}
+.chk-no{display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:var(--bg2);border:0.5px solid var(--border)}
+.chk-no svg{width:11px;height:11px;stroke:var(--text3);stroke-width:2;fill:none}
+.matrix-note{padding:0.625rem 1rem;background:var(--bg2);border-top:0.5px solid var(--border);font-size:11px;color:var(--text2);line-height:1.55}
+.matrix-note strong{color:var(--text)}
+/* stage tabs */
+.stage-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:1.25rem}
+.stab{padding:0.4rem 1rem;font-size:12px;font-weight:500;border:0.5px solid var(--border2);border-radius:20px;cursor:pointer;background:var(--bg);color:var(--text2);transition:all 0.15s;font-family:'DM Sans',sans-serif}
+.stab:hover{background:var(--bg2)}.stab.on{background:var(--text);color:var(--bg);border-color:var(--text)}
+.spane{display:none}.spane.on{display:block}
+/* clf record */
+.clf-record{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);overflow:hidden;margin-bottom:1.25rem}
+.clf-rhead{padding:0.75rem 1rem;background:var(--bg2);border-bottom:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.clf-rhead p{font-size:12px;font-weight:500;color:var(--text2)}.clf-rhead span{font-size:11px;color:var(--text3)}
+.clf-fields{display:grid;grid-template-columns:1fr 1fr}
+.clf-field{padding:0.75rem 1rem;border-bottom:0.5px solid var(--border);border-right:0.5px solid var(--border)}
+.clf-field:nth-child(even){border-right:none}.clf-field:nth-last-child(-n+2){border-bottom:none}
+.clf-flbl{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.06em;margin-bottom:4px}
+.clf-fval{font-size:13px;color:var(--text);font-weight:500}
+.clf-fval.ph{color:var(--text3);font-weight:400;font-style:italic}
+.clf-class-row{padding:0.875rem 1rem;background:var(--bg2);border-top:0.5px solid var(--border);display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.clf-clbl{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);font-weight:600}
+.clf-pills{display:flex;gap:6px;flex-wrap:wrap}
+.clf-pill{padding:4px 11px;border-radius:4px;font-size:11px;font-weight:500;border:0.5px solid;cursor:pointer;transition:all 0.15s}
+.clf-pill.std{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.clf-pill.hc{background:var(--navy-bg);color:var(--navy-mid);border-color:var(--navy-bd)}
+.clf-pill.hp{background:var(--amber-bg);color:var(--amber-mid);border-color:var(--amber-bd)}
+.clf-pill.hi{background:var(--red-bg);color:var(--red-mid);border-color:var(--red-bd)}
+.clf-pill.dim{opacity:0.35}
+.clf-chain{padding:0.75rem 1rem;border-top:0.5px solid var(--border);background:var(--bg);display:none}
+.clf-chain.show{display:block}
+.clf-chain-lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.07em;color:var(--text3);margin-bottom:0.5rem;font-weight:600}
+.clf-steps{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:0.5rem}
+.clf-cstep{font-size:11px;font-weight:500;padding:3px 9px;border-radius:4px;border:0.5px solid}
+.std .clf-cstep{background:var(--green-bg);color:var(--green);border-color:var(--green-bd)}
+.hc .clf-cstep{background:var(--navy-bg);color:var(--navy-mid);border-color:var(--navy-bd)}
+.hp .clf-cstep{background:var(--amber-bg);color:var(--amber-mid);border-color:var(--amber-bd)}
+.hi .clf-cstep{background:var(--red-bg);color:var(--red-mid);border-color:var(--red-bd)}
+.clf-cnote{font-size:11px;color:var(--text2);line-height:1.5}
+/* dd */
+.dd-cat{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;color:var(--text3);padding:0.5rem 0;border-top:0.5px solid var(--border);margin-top:0.875rem}
+.dd-cat:first-of-type{border-top:none;margin-top:0}
+.dd-items{display:flex;flex-direction:column;gap:6px}
+.dd-item{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r);padding:0.75rem 1rem;display:flex;gap:10px;align-items:flex-start}
+.dd-q{font-size:13px;color:var(--text);flex:1;line-height:1.45}
+.dd-note{font-size:11px;color:var(--text2);margin-top:4px}
+.dd-flag{flex-shrink:0;margin-top:1px}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px;margin-bottom:1rem}
+.cert{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r);padding:0.75rem 0.875rem}
+.cert-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:3px}
+.cert-desc{font-size:11px;color:var(--text2);line-height:1.4}
+.cert-lvl{display:inline-block;font-size:10px;font-weight:600;padding:2px 6px;border-radius:3px;margin-top:5px}
+.must{background:var(--red-bg);color:var(--red-mid);border:0.5px solid var(--red-bd)}
+.good{background:var(--amber-bg);color:var(--amber-mid);border:0.5px solid var(--amber-bd)}
+.nice{background:var(--green-bg);color:var(--green);border:0.5px solid var(--green-bd)}
+/* clauses */
+.clause-list{display:flex;flex-direction:column;gap:6px}
+.clause{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r);overflow:hidden}
+.cl-head{display:flex;align-items:center;gap:10px;padding:0.75rem 1rem;cursor:pointer;transition:background 0.1s}
+.cl-head:hover{background:var(--bg2)}
+.cl-num{width:24px;height:24px;border-radius:50%;background:var(--green-bg);color:var(--green);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cl-name{font-size:13px;font-weight:500;color:var(--text);flex:1}
+.cl-tog{font-size:16px;color:var(--text3);flex-shrink:0}
+.cl-body{display:none;padding:0.75rem 1rem 0.875rem 2.75rem;font-size:13px;color:var(--text2);line-height:1.6;background:var(--bg2);border-top:0.5px solid var(--border)}
+.cl-body.open{display:block}
+/* gov table */
+.gtable-wrap{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);overflow:hidden;margin-bottom:1rem}
+.gtable{width:100%;border-collapse:collapse;font-size:13px}
+.gtable th{background:var(--bg2);padding:0.625rem 0.875rem;text-align:left;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--text3);border-bottom:0.5px solid var(--border)}
+.gtable td{padding:0.625rem 0.875rem;border-bottom:0.5px solid var(--border);vertical-align:top;line-height:1.45;color:var(--text2)}
+.gtable tr:last-child td{border-bottom:none}.gtable tr:hover td{background:var(--bg2)}
+/* questions */
+.q-group-lbl{font-size:10px;text-transform:uppercase;letter-spacing:0.08em;font-weight:600;color:var(--text3);padding:0.5rem 0;border-top:0.5px solid var(--border);margin-bottom:0.75rem}
+.q-group-lbl:first-of-type{border-top:none}
+.qitem{background:var(--bg);border:0.5px solid var(--border);border-radius:var(--r);padding:0.875rem 1rem;margin-bottom:8px}
+.qnum{font-size:10px;color:var(--text3);margin-bottom:4px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em}
+.qtext{font-size:13px;color:var(--text);line-height:1.5;font-weight:500}
+.qwhy{font-size:12px;color:var(--text2);margin-top:5px;line-height:1.5}
+.qdir{display:flex;align-items:center;gap:7px;margin-top:7px}
+.qdir-lbl{font-size:10px;color:var(--text3);font-weight:500}
+.qdir-to{font-size:11px;font-weight:500;padding:2px 8px;border-radius:10px}
+.qd-it{background:var(--navy-bg);color:var(--navy-mid);border:0.5px solid var(--navy-bd)}
+.qd-legal{background:var(--purple-bg);color:var(--purple);border:0.5px solid var(--purple-bd)}
+.qd-mgmt{background:var(--amber-bg);color:var(--amber-mid);border:0.5px solid var(--amber-bd)}
+.qd-gcc{background:var(--teal-bg);color:var(--teal-mid);border:0.5px solid var(--teal-bd)}
+/* footer */
+.footer{border-top:0.5px solid var(--border);padding:1.25rem 0;margin-top:2rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:0.5rem}
+.footer span{font-size:11px;color:var(--text3)}
+@media(max-width:680px){
+  .rule3,.allowed2,.row2,.def-types,.clf-fields{grid-template-columns:1fr}
+  .def-type:nth-child(even){border-right:0.5px solid var(--border)}
+  .def-type:nth-last-child(-n+2){border-bottom:0.5px solid var(--border)}
+  .def-type:last-child{border-bottom:none}
+  .clf-field:nth-child(even){border-right:0.5px solid var(--border)}
+  .clf-field:nth-last-child(-n+2){border-bottom:0.5px solid var(--border)}
+  .clf-field:last-child{border-bottom:none}
+  .flow-row{grid-template-columns:1fr;gap:8px}
+  .farrow{transform:rotate(90deg)}.farrow-rev{transform:rotate(-90deg)}
+  .at-clf{min-width:unset;border-right:none;border-bottom:0.5px solid var(--border)}
+  .at-row{flex-direction:column}
+  .shell{padding:0 1rem 4rem}
+  .topnav-inner{padding:0 1rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="nav-logo">
+      <strong>GAR Procurement</strong>
+      <span>G-GCC-P-018 Policy Guide</span>
+    </div>
+    <div class="nav-tabs">
+      <button class="nav-tab on" onclick="switchPane('p1',this)">1. Policy overview</button>
+      <button class="nav-tab" onclick="switchPane('p2',this)">2. Committee structure</button>
+      <button class="nav-tab" onclick="switchPane('p3',this)">3. Sourcing process</button>
+      <button class="nav-tab" onclick="switchPane('p4',this)">4. Open questions</button>
+    </div>
+  </div>
+</nav>
+
+<div class="shell">
+
+<!-- PANE 1 -->
+<div id="p1" class="pane on">
+  <p class="sec-kicker">Section 1</p>
+  <p class="sec-title">What the AI Policy means for Procurement</p>
+  <p class="sec-sub">G-GCC-P-018 — effective 29 April 2026. Applies to all employees and third parties acting on behalf of the company.</p>
+
+  <div class="def-block mb">
+    <div class="def-head">What is this policy and what is AI?</div>
+    <div class="def-purpose"><strong>Objective:</strong> G-GCC-P-018 provides governance on the principles, requirements, use, and development of AI systems within Golden Agri-Resources Ltd and all subsidiaries. It applies to all employees and third parties — including consultants and service providers — acting on behalf of the company for any acquired AI system. Effective 29 April 2026.</div>
+    <div class="def-ai-def">
+      <div class="lbl">Definition of AI</div>
+      <p>Machine-based systems that infer from input data to generate predictions, recommendations, decisions, or content. These outputs may be used by the company to deliver measurable business benefit.</p>
+    </div>
+    <div class="def-types">
+      <div class="def-type"><div class="def-type-name">Productivity &amp; Analytics Driven AI</div><div class="def-type-desc">Enables business productivity gains without structural process changes. Examples: Co-Pilot, departmental Gen-AI, IoT sensor analytics, forecasting tools.</div><span class="def-type-tag tag-it">Governed by Group IT</span></div>
+      <div class="def-type"><div class="def-type-name">Process Level AI Agents</div><div class="def-type-desc">Automates defined steps in end-to-end business processes using rule- or parameter-driven logic. Operates semi-autonomously under human oversight.</div><span class="def-type-tag tag-it">Governed by Group IT</span></div>
+      <div class="def-type"><div class="def-type-name">Enterprise Autonomous &amp; Prescriptive AI</div><div class="def-type-desc">Strategic AI embedded in enterprise decision-making and execution. Uses prescriptive analytics and optimisation engines across multiple systems.</div><span class="def-type-tag tag-exec">Requires executive oversight</span></div>
+      <div class="def-type"><div class="def-type-name">SaaS Embedded AI</div><div class="def-type-desc">Built-in AI within off-the-shelf SaaS solutions (e.g. Workday, Coupa). Operates in a contained manner within the SaaS application.</div><span class="def-type-tag tag-saas">Contained within SaaS</span></div>
+    </div>
+  </div>
+
+  <div class="rule3 mb">
+    <div class="rule r"><h3>Approved tools only</h3><p>Only Group IT-approved AI tools may be used for company work. Personal or free subscriptions are banned for business data.</p></div>
+    <div class="rule g"><h3>Humans stay accountable</h3><p>AI output is advisory only. Every AI-assisted evaluation or decision requires a documented human review step.</p></div>
+    <div class="rule a"><h3>Check data before you paste</h3><p>Assess data confidentiality before inputting into any AI tool. Strictly Confidential data requires special approval.</p></div>
+  </div>
+
+  <div class="allowed2 mb">
+    <div class="ab ay"><div class="ab-head"><div class="dot"></div>Allowed</div><div class="ab-body"><div class="ab-item">Enterprise Microsoft Copilot — drafting, summarising, translating</div><div class="ab-item">AI-suggested evaluation criteria with human finalisation</div><div class="ab-item">Spend analytics via Group IT-approved tools</div><div class="ab-item">Coupa built-in AI (confirm feature scope with Group IT)</div></div></div>
+    <div class="ab an"><div class="ab-head"><div class="dot"></div>Not allowed</div><div class="ab-body"><div class="ab-item">ChatGPT (free/personal), Claude.ai personal, Gemini personal</div><div class="ab-item">Confidential bid pricing into AI without data classification check</div><div class="ab-item">AI-automated supplier ranking or award without human review</div><div class="ab-item">Any tool not on the Group IT approved list</div></div></div>
+  </div>
+
+  <div class="alert">Policy effective 29 April 2026 — no grace period. Non-compliance is subject to disciplinary action up to termination (Sec 32). Audit your tools now.</div>
+
+  <div class="flow-wrap">
+    <div class="flow-head"><p>Appendix I — AI Initiative process flow</p><span>How every AI initiative must move from request to approval</span></div>
+    <div class="flow-legend">
+      <div class="fl-item"><div class="fl-dot" style="background:#378ADD;border-radius:2px"></div>BU / Corporate</div>
+      <div class="fl-item"><div class="fl-dot" style="background:#1D9E75;border-radius:2px"></div>Group IT</div>
+      <div class="fl-item"><div class="fl-dot" style="background:#EF9F27;border-radius:2px;border:1px dashed #BA7517"></div>Group Review (conditional)</div>
+      <div class="fl-item"><div class="fl-dot" style="background:#639922;border-radius:2px"></div>Final approval</div>
+    </div>
+    <div class="flow-body">
+      <div class="flow-row">
+        <div class="fstep fs-bu" style="margin-top:12px"><div class="fstep-num">1</div><div class="fstep-actor">BU / Corp</div><div class="fstep-action">Raise requirement</div><div class="fstep-who">Requestor — min. Level 17<br>Clear high-impact business benefit and scope</div></div>
+        <div class="farrow">→</div>
+        <div class="fstep fs-bu" style="margin-top:12px"><div class="fstep-num">2</div><div class="fstep-actor">BU / Corp</div><div class="fstep-action">Review &amp; approve business benefit</div><div class="fstep-who">BU CFO / GC &amp; Head Office of CFO<br>Business Project Owner</div></div>
+        <div class="farrow">→</div>
+        <div class="fstep fs-it" style="margin-top:12px"><div class="fstep-num">3</div><div class="fstep-actor">Group IT</div><div class="fstep-action">IT assessment review</div><div class="fstep-who">Head of IT/Digital<br>Complexity · cost · timeline · compliance</div></div>
+      </div>
+      <div class="flow-drop"><div class="flow-drop-line"></div></div>
+      <div class="flow-row">
+        <div class="fstep fs-ap"><div class="fstep-num">6</div><div class="fstep-actor">Final approval</div><div class="fstep-action">Review &amp; approve initiative</div><div class="fstep-who">Head of Business / Corp Function Head<br><em style="font-size:10px">+ additional approvers by classification — see below</em></div></div>
+        <div class="farrow farrow-rev">→</div>
+        <div class="fstep fs-gr"><div class="fstep-num">5</div><div class="fstep-actor">Group Review</div><div class="fstep-action">Feedback &amp; review</div><div class="fstep-who">Required for High Complexity and above only<br>Independent risk &amp; governance assurance</div></div>
+        <div class="farrow farrow-rev">→</div>
+        <div class="fstep fs-bu"><div class="fstep-num">4</div><div class="fstep-actor">BU / Corp</div><div class="fstep-action">Review &amp; approve cost vs benefit</div><div class="fstep-who">BU CFO / GC &amp; Head Office of CFO<br>Business Project Owner</div></div>
+      </div>
+      <div class="at-wrap">
+        <div class="at-head">Step 6 approval chain — varies by classification</div>
+        <div class="at-row"><div class="at-clf std">Standard Complexity</div><div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business / Corp Function Head</span></div></div>
+        <div class="at-row"><div class="at-clf hc">High Complexity</div><div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business</span><span class="at-arr">→</span><span class="at-step plus">+ Head of SS &amp; Digital Transformation</span></div></div>
+        <div class="at-row"><div class="at-clf hp">High Criticality &amp; Priority</div><div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business</span><span class="at-arr">→</span><span class="at-step plus">+ Head of SS &amp; Digital Transformation</span><span class="at-arr">→</span><span class="at-step plus">+ Head of GCC</span><span class="at-arr">→</span><span class="at-step plus">+ Group CFO</span></div></div>
+        <div class="at-row"><div class="at-clf hi">High Investment Value ≥ USD 1M</div><div class="at-chain"><span class="at-step bu">Full chain above</span><span class="at-arr">→</span><span class="at-step ai">+ AI Committee</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer"><span>G-GCC-P-018 Artificial Intelligence Use and Development Policy — Golden Agri-Resources Ltd</span><span>Effective 29 April 2026 · Classification: GCC</span></div>
+</div>
+
+<!-- PANE 2 -->
+<div id="p2" class="pane">
+  <p class="sec-kicker">Section 2</p>
+  <p class="sec-title">Committee structure</p>
+  <p class="sec-sub">Who is involved in approving and overseeing AI initiatives — and when each body is triggered.</p>
+
+  <div class="comm-block">
+    <div class="tb-banner tb-navy"><span class="tbicon">WHEN</span><div class="tbtext"><strong>Triggered for:</strong> All AI initiatives with total cumulative investment ≥ USD 1M only. AI Committee is never involved below USD 1M, regardless of complexity or criticality. Contract cannot be executed until AI Committee approval is in place.</div></div>
+    <div class="comm-head ch-navy"><div class="ch-icon">AI</div><div><div class="ch-title">AI Committee</div><div class="ch-desc">Evaluates and approves High Investment Value initiatives (≥ USD 1M). Monitors Group-wide AI execution and portfolio.</div></div></div>
+    <div class="comm-body">
+      <table class="mtable">
+        <thead><tr><th>Member</th><th>Function</th><th>Responsibility</th></tr></thead>
+        <tbody>
+          <tr><td><div class="mname">Management</div></td><td><div class="mfn">Chair</div></td><td>Ultimate oversight and decision authority for all AI Committee matters</td></tr>
+          <tr><td><div class="mname">Head of SS &amp; Digital Transformation</div></td><td><div class="mfn">Permanent</div></td><td>Leads AI strategy alignment; final classifier of AI initiative tier</td></tr>
+          <tr><td><div class="mname">Group CFO</div></td><td><div class="mfn">Permanent</div></td><td>Financial governance; approves investment value and budget; reviews cost vs benefit reporting</td></tr>
+          <tr><td><div class="mname">Head of Group Controllership &amp; Compliance</div></td><td><div class="mfn">Permanent</div></td><td>Ensures compliance with internal controls, policies, and applicable regulations</td></tr>
+          <tr><td><div class="mname">Head of Upstream / Chief Operating Officer</div></td><td><div class="mfn">By relevance</div></td><td>Provides operational context for initiatives affecting upstream or operations</td></tr>
+          <tr><td><div class="mname">Related Corporate Function Head</div></td><td><div class="mfn">By relevance</div></td><td>Function-specific oversight based on initiative scope</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="comm-block">
+    <div class="tb-banner tb-teal"><span class="tbicon">WHEN</span><div class="tbtext"><strong>Triggered for:</strong> High Complexity initiatives (any value) · High Criticality &amp; Priority initiatives (any value) · All initiatives ≥ USD 1M. Group Review assesses first — then AI Committee approves for ≥ USD 1M. Procurement is a named member by relevance.</div></div>
+    <div class="comm-head ch-teal"><div class="ch-icon">GR</div><div><div class="ch-title">Group Review</div><div class="ch-desc">Independent cross-functional team providing risk oversight and governance assurance across all non-standard AI initiatives.</div></div></div>
+    <div class="comm-body">
+      <div class="legend"><div class="leg-item"><div class="leg-dot" style="background:#378ADD"></div>Permanent member</div><div class="leg-item"><div class="leg-dot" style="background:#1D9E75"></div>Member by relevance</div></div>
+      <table class="mtable">
+        <thead><tr><th>Member</th><th>Function</th><th style="width:44%">Responsibility</th></tr></thead>
+        <tbody>
+          <tr><td><div class="mname">Head of Digital Workplace Automation &amp; AI</div><div class="mfn">+ Head of Digital Innovation</div><div class="mfn">+ Head of Digital/Enterprise Architecture</div></td><td><span class="pill pill-perm">Permanent</span><div class="mfn" style="margin-top:3px">Group IT</div></td><td>Ensures appropriate technical safeguards, data and access controls, and secure deployment standards. Ensures AI solutions align with enterprise architecture and infrastructure policies.</td></tr>
+          <tr><td><div class="mname">Appointed PIC by BU CFO</div><div class="mfn">+ Head of Corporate Policy &amp; Governance</div></td><td><span class="pill pill-perm">Permanent</span><div class="mfn" style="margin-top:3px">Risk &amp; Controls</div></td><td>Ensures initiatives are integrated with company internal controls and policies. Ensures documentation, monitoring, and reporting obligations are properly established.</td></tr>
+          <tr><td><div class="mname">Group Controller</div></td><td><span class="pill pill-perm">Permanent</span><div class="mfn" style="margin-top:3px">Finance</div></td><td>Validates assumptions and benefits of AI Initiatives. Assesses impact on Group P&amp;L.</td></tr>
+          <tr><td><div class="mname">Head of Office of CFO</div></td><td><span class="pill pill-perm">Permanent</span><div class="mfn" style="margin-top:3px">Finance</div></td><td>Assesses Capex/Opex treatment in financial reporting.</td></tr>
+          <tr><td><div class="mname">Procurement</div></td><td><span class="pill pill-relev">By relevance</span><div class="mfn" style="margin-top:3px">Procurement</div></td><td>Conducts due diligence on third-party AI vendors. Ensures contractual protections, service levels, and vendor risk management controls are in place.</td></tr>
+          <tr><td><div class="mname">Legal</div></td><td><span class="pill pill-relev">By relevance</span><div class="mfn" style="margin-top:3px">Legal</div></td><td>Interprets and advises on applicable laws. Identifies legal exposure and obligations arising from AI use.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="comm-block">
+    <div class="tb-banner tb-amber"><span class="tbicon">WHEN</span><div class="tbtext"><strong>Applies to every AI initiative without exception.</strong> Both owners must be nominated before sourcing begins. Procurement coordinates with both throughout the process.</div></div>
+    <div class="comm-head ch-amber"><div class="ch-icon">PO</div><div><div class="ch-title">Project Owners</div><div class="ch-desc">Every AI initiative has two co-owners jointly responsible from initiation to decommission.</div></div></div>
+    <div class="comm-body">
+      <table class="mtable">
+        <thead><tr><th>Role</th><th>Appointed by</th><th>Responsibility</th></tr></thead>
+        <tbody>
+          <tr><td><div class="mname">Business Project Owner (BPO)</div></td><td style="font-size:11px">Head of Upstream/COO or Corp Function Head</td><td>Accountable for business justification, benefits, allowed use, final outcomes, and change management. Procurement's primary counterpart for sourcing scope.</td></tr>
+          <tr><td><div class="mname">Technical Project Owner (TPO)</div></td><td style="font-size:11px">Group IT</td><td>Accountable for technical design, security controls, and performance monitoring. Must contain and report any AI incident within 24 hours.</td></tr>
+          <tr><td><div class="mname">Business Project Manager</div></td><td style="font-size:11px">Business Project Owner</td><td>Translates business objectives into AI use cases. Validates AI outputs against business expectations. Escalates business risks and misuse.</td></tr>
+          <tr><td><div class="mname">IT Project Manager</div></td><td style="font-size:11px">Technical Project Owner</td><td>Plans and manages AI system lifecycle. Ensures security, data, and access controls. Coordinates testing, deployment, monitoring, and incident management.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="matrix-wrap">
+    <div class="matrix-head"><p>Approval &amp; review matrix — who is involved by classification</p><span>Sec 18 &amp; Sec 9 · Appendix II</span></div>
+    <table class="mxtable">
+      <thead><tr><th style="width:38%">Classification</th><th style="width:16%">Investment</th><th style="width:23%;text-align:center">Group Review</th><th style="width:23%;text-align:center">AI Committee</th></tr></thead>
+      <tbody>
+        <tr><td><div class="clf-tag std"><div class="clf-dot d-std"></div>Standard Complexity</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Single BU · &lt;200 man-days · no system integration</div></td><td style="font-size:12px;color:var(--text2)">&lt; USD 1M</td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td></tr>
+        <tr><td><div class="clf-tag hc"><div class="clf-dot d-hc"></div>High Complexity</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Multi-BU · ≥200 man-days · and/or system integration</div></td><td style="font-size:12px;color:var(--text2)">&lt; USD 1M</td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td></tr>
+        <tr><td><div class="clf-tag hp"><div class="clf-dot d-hp"></div>High Criticality &amp; Priority</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Ops continuity risk · regulatory/legal compliance impact</div></td><td style="font-size:12px;color:var(--text2)">&lt; USD 1M</td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td></tr>
+        <tr style="background:var(--bg2)"><td><div class="clf-tag hi"><div class="clf-dot d-hi"></div>High Investment Value</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Any complexity — threshold is investment value alone</div></td><td style="font-size:12px;font-weight:600;color:var(--red-mid)">≥ USD 1M</td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td></tr>
+      </tbody>
+    </table>
+    <div class="matrix-note"><strong>Sequence for ≥ USD 1M:</strong> Group Review assesses first → AI Committee approves. Contract cannot be executed until AI Committee approval is in place. &nbsp;|&nbsp; <strong>Important:</strong> use total cumulative contract value, not annual cost, for the USD 1M threshold.</div>
+  </div>
+
+  <div class="footer"><span>G-GCC-P-018 — Committee Structure Reference</span><span>Appendix I, II &amp; IV · Sec 9 &amp; 18</span></div>
+</div>
+
+<!-- PANE 3 -->
+<div id="p3" class="pane">
+  <p class="sec-kicker">Section 3</p>
+  <p class="sec-title">Sourcing process</p>
+  <p class="sec-sub">What procurement must do at each stage of the AI vendor sourcing cycle.</p>
+
+  <div class="stage-tabs">
+    <button class="stab on" onclick="switchStage('s1',this)">Pre-RFX</button>
+    <button class="stab" onclick="switchStage('s2',this)">RFX — Due Diligence</button>
+    <button class="stab" onclick="switchStage('s3',this)">Contracting</button>
+    <button class="stab" onclick="switchStage('s4',this)">Post-Award</button>
+  </div>
+
+  <div id="s1" class="spane on">
+    <div class="info mb">Before going to market, the Business Project Owner must have classified the initiative and completed the relevant approval path. Procurement must receive and verify this record before sourcing begins.</div>
+    <div class="clf-record mb">
+      <div class="clf-rhead"><p>AI Initiative Classification Record — to be received from Business Project Owner</p><span>Verify all fields before proceeding</span></div>
+      <div class="clf-fields">
+        <div class="clf-field"><div class="clf-flbl">Initiative name</div><div class="clf-fval ph">Filled in by BPO</div></div>
+        <div class="clf-field"><div class="clf-flbl">Business Unit(s) impacted</div><div class="clf-fval ph">Filled in by BPO</div></div>
+        <div class="clf-field"><div class="clf-flbl">Business Project Owner</div><div class="clf-fval ph">Name + title</div></div>
+        <div class="clf-field"><div class="clf-flbl">Technical Project Owner</div><div class="clf-fval ph">Name + title (Group IT)</div></div>
+        <div class="clf-field"><div class="clf-flbl">Total cumulative investment (USD)</div><div class="clf-fval ph">Multi-year total, not annual</div></div>
+        <div class="clf-field"><div class="clf-flbl">System integration required?</div><div class="clf-fval ph">Yes / No</div></div>
+        <div class="clf-field"><div class="clf-flbl">Approval(s) obtained</div><div class="clf-fval ph">List approvers and dates</div></div>
+        <div class="clf-field"><div class="clf-flbl">Group Review required?</div><div class="clf-fval ph">Yes / No — confirm with TPO</div></div>
+      </div>
+      <div class="clf-class-row">
+        <div class="clf-clbl">Classification</div>
+        <div class="clf-pills">
+          <div class="clf-pill std dim" onclick="showClass('std')">Standard Complexity</div>
+          <div class="clf-pill hc dim" onclick="showClass('hc')">High Complexity</div>
+          <div class="clf-pill hp dim" onclick="showClass('hp')">High Criticality &amp; Priority</div>
+          <div class="clf-pill hi dim" onclick="showClass('hi')">High Investment Value ≥ USD 1M</div>
+        </div>
+      </div>
+      <div id="chain-std" class="clf-chain std"><div class="clf-chain-lbl">Approval path</div><div class="clf-steps"><span class="clf-cstep">Requestor (min. Level 17)</span><span class="clf-cstep">Head of Business / Corp Function Head</span></div><div class="clf-cnote">Group Review not required. AI Committee not required.</div></div>
+      <div id="chain-hc" class="clf-chain hc"><div class="clf-chain-lbl">Approval path</div><div class="clf-steps"><span class="clf-cstep">Requestor (min. Level 17)</span><span class="clf-cstep">Head of Business</span><span class="clf-cstep">Head of SS &amp; Digital Transformation</span></div><div class="clf-cnote">Group Review required. AI Committee not required. Bi-annual IT Committee status updates required post go-live.</div></div>
+      <div id="chain-hp" class="clf-chain hp"><div class="clf-chain-lbl">Approval path</div><div class="clf-steps"><span class="clf-cstep">Requestor (min. Level 17)</span><span class="clf-cstep">Head of Business</span><span class="clf-cstep">Head of SS &amp; Digital Transformation</span><span class="clf-cstep">Head of GCC</span><span class="clf-cstep">Group CFO</span></div><div class="clf-cnote">Group Review required. AI Committee not required. Procurement participates as member by relevance.</div></div>
+      <div id="chain-hi" class="clf-chain hi"><div class="clf-chain-lbl">Approval path</div><div class="clf-steps"><span class="clf-cstep">Requestor (min. Level 17)</span><span class="clf-cstep">Head of Business</span><span class="clf-cstep">Head of SS &amp; Digital Transformation</span><span class="clf-cstep">Head of GCC</span><span class="clf-cstep">Group CFO</span><span class="clf-cstep">AI Committee</span></div><div class="clf-cnote">Both Group Review and AI Committee required. Group Review assesses first → AI Committee approves. Contract cannot be executed until AI Committee approval is in place.</div></div>
+    </div>
+    <div class="row2">
+      <div class="card"><div class="clabel cr">NDA before any engagement</div><ul class="pts"><li>Signed NDA mandatory before any company data is shared — including demos and PoCs</li><li>You have full authority to halt a vendor demo until the NDA is executed</li><li>Use Legal's standard GAR NDA — do not accept vendor's template without Legal review</li></ul></div>
+      <div class="card"><div class="clabel cn">What procurement must confirm</div><ul class="pts"><li>Classification record received and all fields completed</li><li>Correct approval path followed and evidenced</li><li>Business PM and IT PM both nominated</li><li>Any AI-enabled SaaS renewal treated as an AI Initiative — not a routine renewal</li></ul></div>
+    </div>
+  </div>
+
+  <div id="s2" class="spane">
+    <div class="info mb">Every RFP/RFQ for an AI-enabled vendor must cover these areas. Non-response to Required questions = disqualification.</div>
+    <div class="dd-cat">A — Vendor qualification</div>
+    <div class="dd-items gap">
+      <div class="dd-item"><div class="dd-q">Does the vendor have a documented AI governance or responsible AI policy?<div class="dd-note">Signals governance maturity. Absence is a risk indicator.</div></div><span class="dd-flag flag-a">Preferred</span></div>
+      <div class="dd-item"><div class="dd-q">Material AI incidents in the past 24 months — model failures, data leakage, harmful outputs?<div class="dd-note">Transparency is positive. Refusal to disclose is a red flag.</div></div><span class="dd-flag flag-a">Preferred</span></div>
+      <div class="dd-item"><div class="dd-q">Will they grant GAR the right to audit data handling, security controls, and AI model outputs?<div class="dd-note">Non-negotiable per Sec 26(a). Resistance is a disqualifier for sensitive deployments.</div></div><span class="dd-flag flag-r">Required</span></div>
+      <div class="dd-item"><div class="dd-q">Full subprocessor list provided? Notification process for adding new subprocessors?<div class="dd-note">Undisclosed data sharing is a disqualifier.</div></div><span class="dd-flag flag-r">Required</span></div>
+    </div>
+    <div class="dd-cat">B — Technical certifications for data handling</div>
+    <div class="cert-grid gap">
+      <div class="cert"><div class="cert-name">ISO 27001</div><div class="cert-desc">Information security management. Baseline for any AI vendor handling company data.</div><span class="cert-lvl must">Must have</span></div>
+      <div class="cert"><div class="cert-name">SOC 2 Type II</div><div class="cert-desc">Independent audit of security, availability, and confidentiality over a time period.</div><span class="cert-lvl must">Must have</span></div>
+      <div class="cert"><div class="cert-name">ISO 27701</div><div class="cert-desc">Privacy information management. Important for vendors processing personal data.</div><span class="cert-lvl good">Strongly preferred</span></div>
+      <div class="cert"><div class="cert-name">CSA STAR</div><div class="cert-desc">Cloud security assurance specific to cloud-based AI/SaaS vendors.</div><span class="cert-lvl good">Strongly preferred</span></div>
+      <div class="cert"><div class="cert-name">ISO 42001</div><div class="cert-desc">AI management system standard. Signals structured AI governance maturity.</div><span class="cert-lvl nice">Good to have</span></div>
+      <div class="cert"><div class="cert-name">PDPA / GDPR alignment</div><div class="cert-desc">Documented compliance with data protection laws in GAR's jurisdictions (ID, SG, CN).</div><span class="cert-lvl must">Must confirm</span></div>
+    </div>
+    <div class="dd-cat">C — Data handling</div>
+    <div class="dd-items gap">
+      <div class="dd-item"><div class="dd-q">Who owns the data we input? Does the vendor claim rights to use it for model training?<div class="dd-note">Zero tolerance. GAR data cannot be used for any vendor's model training.</div></div><span class="dd-flag flag-r">Required</span></div>
+      <div class="dd-item"><div class="dd-q">Where is data stored and processed? Can data residency be locked contractually by country?<div class="dd-note">Confirm acceptable geographies with management for ID, SG, CN.</div></div><span class="dd-flag flag-r">Required</span></div>
+      <div class="dd-item"><div class="dd-q">Encryption standards at rest and in transit? Who manages encryption keys?<div class="dd-note">Expect AES-256 at rest, TLS 1.2+ in transit. BYOK preferred for sensitive workloads.</div></div><span class="dd-flag flag-r">Required</span></div>
+      <div class="dd-item"><div class="dd-q">Data deletion process and timeline on contract termination?<div class="dd-note">Return within 30 days, deletion within 60 days, written confirmation from authorised officer.</div></div><span class="dd-flag flag-r">Required</span></div>
+    </div>
+    <div class="dd-cat">D — AI model governance</div>
+    <div class="dd-items">
+      <div class="dd-item"><div class="dd-q">Does training data include any data from other clients?<div class="dd-note">Shared model training using client data is a significant risk. Expect a clear negative.</div></div><span class="dd-flag flag-r">Required</span></div>
+      <div class="dd-item"><div class="dd-q">How is the model tested for bias and accuracy? Provide methodology and most recent results.<div class="dd-note">Vague answers are a red flag. Expect documented methodology with specific results.</div></div><span class="dd-flag flag-r">Required</span></div>
+      <div class="dd-item"><div class="dd-q">Advance notice period for model version updates or significant changes?<div class="dd-note">Minimum 30 days expected.</div></div><span class="dd-flag flag-r">Required</span></div>
+      <div class="dd-item"><div class="dd-q">Incident notification SLA for data breaches, model failures, or harmful outputs?<div class="dd-note">GAR policy requires vendor notification within 24 hours (Sec 27).</div></div><span class="dd-flag flag-r">Required</span></div>
+    </div>
+  </div>
+
+  <div id="s3" class="spane">
+    <div class="info mb">Nine clauses must be added to every AI vendor contract as an addendum. Work with Legal to finalise wording. Click each clause to expand.</div>
+    <div class="clause-list">
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">1</div><div class="cl-name">Data ownership &amp; permitted use</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">GAR retains full ownership of all input data. Vendor cannot use it for model training, share with third parties, or retain beyond agreed period. Permitted use is delivering the contracted service only.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">2</div><div class="cl-name">Data residency &amp; storage location</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">Vendor stores and processes GAR data exclusively in agreed locations listed in a contract schedule. Any change requires 60 days' advance notice and GAR's written consent.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">3</div><div class="cl-name">Right to audit</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">GAR or appointed representatives may audit vendor's data handling, security controls, and AI model outputs with 10 business days' notice — once per year minimum, or at any time after a material incident.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">4</div><div class="cl-name">NDA before engagement</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">NDA must be executed before any engagement, including demos and PoCs. This addendum does not substitute for a separately signed NDA.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">5</div><div class="cl-name">Data deletion on termination</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">Return GAR data within 30 days, permanent deletion of all copies within 60 days, written deletion confirmation from an authorised officer.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">6</div><div class="cl-name">AI incident notification — 24 hours</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">Vendor notifies GAR within 24 hours of detecting: unauthorised data access, model failure or harmful output, data leakage, bias events, or any security incident. Must include scope, containment actions, and remediation plan.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">7</div><div class="cl-name">Model change notification — 30 days</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">Vendor gives 30 days' advance notice of any material model change. GAR may delay implementation for up to 60 days without penalty.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">8</div><div class="cl-name">Subprocessor management</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">Vendor maintains current subprocessor list and notifies GAR 30 days before adding new subprocessors. GAR may object within 15 business days. Vendor remains fully liable for all subprocessor acts.</div></div>
+      <div class="clause"><div class="cl-head" onclick="tog(this)"><div class="cl-num">9</div><div class="cl-name">Validity &amp; annual review right</div><span class="flag-r">Required</span><div class="cl-tog">+</div></div><div class="cl-body">Addendum applies for full contract duration including renewals. GAR may request annual review. If terms cannot be agreed within 60 days, GAR may terminate with 90 days' notice.</div></div>
+    </div>
+    <div class="alert" style="margin-top:1rem">All active AI vendor contracts predating 29 April 2026 are likely non-compliant. Inventory now and escalate gaps to Legal and the AI Committee.</div>
+  </div>
+
+  <div id="s4" class="spane">
+    <div class="gtable-wrap">
+      <table class="gtable">
+        <thead><tr><th>Obligation</th><th>Who</th><th>Cadence</th><th>Ref</th></tr></thead>
+        <tbody>
+          <tr><td>AI vendor due diligence — security posture, data handling, performance vs KPIs</td><td>Procurement (Group Review)</td><td>Quarterly</td><td>App. IV</td></tr>
+          <tr><td>Status update to IT Committee — High Complexity+ initiatives: progress, issues, cost vs budget</td><td>Business PM &amp; IT PM</td><td>Every 6 months</td><td>Sec 22</td></tr>
+          <tr><td>Monitor AI outputs for anomalies, drift, or degradation</td><td>Technical Project Owner</td><td>Continuous post go-live</td><td>Sec 24c</td></tr>
+          <tr><td>Incident response — contain and assess within 24 hours, report to AI Committee</td><td>Technical Project Owner</td><td>Within 24hr of detection</td><td>Sec 27–28</td></tr>
+          <tr><td>Decommission proposal when AI system is end-of-life or contract ends</td><td>Business PM &amp; IT PM</td><td>As triggered</td><td>Sec 29</td></tr>
+          <tr><td>Post-decommission review — lessons learned, data deletion confirmation</td><td>Business PM &amp; IT PM</td><td>Within 60 days</td><td>Sec 30–31</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card"><div class="clabel ct">Procurement's specific ongoing role (Appendix IV)</div><ul class="pts"><li>Conduct due diligence on third-party AI vendors for all purchased or subscription AI</li><li>Ensure contractual protections, service levels, and vendor risk controls remain in place — not just at point of award</li><li>Flag any vendor compliance gaps immediately to the AI Committee</li><li>Participate in Group Review for any new High Complexity+ or High Investment Value AI initiative</li></ul></div>
+  </div>
+
+  <div class="footer"><span>G-GCC-P-018 — Sourcing Process Reference</span><span>Sec 18, 24, 26, 27–31 · Appendix I, II, IV</span></div>
+</div>
+
+<!-- PANE 4 -->
+<div id="p4" class="pane">
+  <p class="sec-kicker">Section 4</p>
+  <p class="sec-title">Open questions</p>
+  <p class="sec-sub">These must be resolved before procurement can fully operationalise the policy. Raise in the next relevant forum before the next sourcing cycle begins.</p>
+
+  <div class="q-group-lbl">A — Group IT</div>
+  <div class="qitem"><div class="qnum">Q1</div><div class="qtext">What is the SLA for Group IT to evaluate and approve or reject a new AI tool request?</div><div class="qwhy">Procurement needs to know the waiting period before using a new AI-powered sourcing tool. An undefined timeline creates sourcing delays.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-it">Group IT</span></div></div>
+  <div class="qitem"><div class="qnum">Q2</div><div class="qtext">Which specific Coupa and Microsoft Copilot features and plugins are covered under the approved list? Is there a written register?</div><div class="qwhy">The policy approves these platforms but not all features. Procurement uses both extensively and needs clarity to avoid inadvertent non-compliance.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-it">Group IT</span></div></div>
+  <div class="qitem"><div class="qnum">Q3</div><div class="qtext">How is a data confidentiality assessment operationally performed before inputting data into an AI tool — self-service checklist or formal sign-off per document type?</div><div class="qwhy">Without a defined process, procurement staff will either skip this step or interpret it inconsistently.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-it">Group IT</span></div></div>
+
+  <div class="q-group-lbl">B — Management / Policy owner</div>
+  <div class="qitem"><div class="qnum">Q4</div><div class="qtext">Where is the line between AI as "advisory" and AI "automating" a procurement decision? Can AI-generated supplier scoring be used as a human-adjusted starting point?</div><div class="qwhy">The policy prohibits automating business decisions but does not define "automate" in a procurement context.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-mgmt">Policy owner / GCC</span></div></div>
+  <div class="qitem"><div class="qnum">Q5</div><div class="qtext">Is there a transition plan for existing AI vendor contracts that do not meet Section 26 requirements — renegotiate at next renewal, or proactively before expiry?</div><div class="qwhy">The policy is effective now but existing contracts cannot be changed unilaterally. Procurement cannot prioritise remediation without a management position.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-mgmt">Management / AI Committee</span></div></div>
+
+  <div class="q-group-lbl">C — Legal</div>
+  <div class="qitem"><div class="qnum">Q6</div><div class="qtext">What are the acceptable data residency geographies for each of GAR's operating jurisdictions — Indonesia, Singapore, and China?</div><div class="qwhy">Section 26(a) requires data residency to be contractually explicit, but the policy does not specify acceptable countries. Without this, Schedule B in the contract addendum cannot be completed.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-legal">Legal</span></div></div>
+  <div class="qitem"><div class="qnum">Q7</div><div class="qtext">Does SaaS Embedded AI (e.g. Coupa, Workday) require the same Section 26 contractual protections, or are they exempt given they operate in a "contained manner"?</div><div class="qwhy">This has significant renegotiation implications. If exempt, procurement's contract remediation workload reduces substantially. If not, Coupa and Workday agreements need urgent review.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-legal">Legal</span></div></div>
+
+  <div class="q-group-lbl">D — Group Controllership &amp; Finance</div>
+  <div class="qitem"><div class="qnum">Q8</div><div class="qtext">For High Investment Value initiatives (≥ USD 1M), how does the AI Committee approval process interact with G-BPC-P-004 Investment Committee Governance — sequential, parallel, or does one supersede the other?</div><div class="qwhy">Procurement needs the correct sequencing to plan sourcing timelines. If both committees are required and meet on different cadences, this directly affects lead time before contract execution.</div><div class="qdir"><span class="qdir-lbl">Direct to</span><span class="qdir-to qd-gcc">Group Controllership / GCC</span></div></div>
+
+  <div class="footer"><span>G-GCC-P-018 — Open Questions for Resolution</span><span>Raise before next sourcing cycle · Internal use only</span></div>
+</div>
+
+</div>
+
+<script>
+function switchPane(id,el){
+  document.querySelectorAll('.pane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.nav-tab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function switchStage(id,el){
+  document.querySelectorAll('.spane').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.stab').forEach(b=>b.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  el.classList.add('on');
+}
+function tog(el){
+  const b=el.nextElementSibling;
+  const t=el.querySelector('.cl-tog');
+  b.classList.toggle('open');
+  t.textContent=b.classList.contains('open')?'−':'+';
+}
+function showClass(type){
+  document.querySelectorAll('.clf-pill').forEach(p=>p.classList.add('dim'));
+  document.querySelectorAll('.clf-chain').forEach(c=>c.classList.remove('show'));
+  document.querySelector('.clf-pill.'+type).classList.remove('dim');
+  document.getElementById('chain-'+type).classList.add('show');
+}
+</script>
+</body>
+</html>
