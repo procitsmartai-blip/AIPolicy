@@ -27,7 +27,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg2);color:var(--text);fo
 .nav-logo{padding:0.875rem 1.5rem 0.875rem 0;border-right:1px solid rgba(255,255,255,0.12)}
 .nav-logo strong{display:block;font-family:'Lora',serif;font-size:14px;color:#fff;font-weight:500}
 .nav-logo span{display:block;font-size:10px;color:rgba(255,255,255,0.45);letter-spacing:0.04em;margin-top:1px}
-.nav-tabs{display:flex;overflow-x:auto;flex:1}
+.nav-tabs{display:flex;overflow-x:auto;flex:1;scrollbar-width:none;-ms-overflow-style:none}.nav-tabs::-webkit-scrollbar{display:none}
 .nav-tab{padding:0.875rem 1.25rem;font-size:12px;color:rgba(255,255,255,0.5);text-decoration:none;border:none;background:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all 0.15s;font-family:'DM Sans',sans-serif;font-weight:500}
 .nav-tab:hover{color:rgba(255,255,255,0.85);background:rgba(255,255,255,0.04)}
 .nav-tab.on{color:#fff;border-bottom-color:rgba(255,255,255,0.55)}
@@ -113,8 +113,16 @@ ul.pts li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3
 .at-wrap{margin-top:1.25rem;border:0.5px solid var(--border);border-radius:var(--r);overflow:hidden}
 .at-head{padding:0.5rem 1rem;background:var(--bg2);border-bottom:0.5px solid var(--border);font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.07em}
 .at-row{display:flex;align-items:flex-start;border-bottom:0.5px solid var(--border)}.at-row:last-child{border-bottom:none}
-.at-clf{padding:0.625rem 1rem;min-width:175px;border-right:0.5px solid var(--border);font-size:11px;font-weight:600;flex-shrink:0}
-.at-clf.std{color:var(--green);background:var(--green-bg)}.at-clf.hc{color:var(--navy-mid);background:var(--navy-bg)}.at-clf.hp{color:var(--amber-mid);background:var(--amber-bg)}.at-clf.hi{color:var(--red-mid);background:var(--red-bg)}
+.at-clf{padding:0.625rem 1rem;min-width:220px;width:220px;border-right:0.5px solid var(--border);flex-shrink:0;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.at-clf-top{display:flex;align-items:center;gap:7px}
+.at-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.at-clf-name{font-size:12px;font-weight:600;white-space:nowrap}
+.at-clf-sub{font-size:11px;color:var(--text3);line-height:1.35;padding-left:16px}
+.at-clf.std .at-dot{background:var(--green-ac)}.at-clf.std .at-clf-name{color:var(--green)}
+.at-clf.hc .at-dot{background:#378ADD}.at-clf.hc .at-clf-name{color:var(--navy-mid)}
+.at-clf.hp .at-dot{background:#BA7517}.at-clf.hp .at-clf-name{color:var(--amber-mid)}
+.at-clf.hi .at-dot{background:var(--red-mid)}.at-clf.hi .at-clf-name{color:var(--red-mid)}
+.at-clf.std{background:var(--green-bg)}.at-clf.hc{background:var(--navy-bg)}.at-clf.hp{background:var(--amber-bg)}.at-clf.hi{background:var(--red-bg)}
 .at-chain{padding:0.625rem 1rem;display:flex;flex-wrap:wrap;gap:5px;align-items:center}
 .at-step{font-size:10px;font-weight:500;padding:2px 7px;border-radius:3px;border:0.5px solid;white-space:nowrap}
 .at-step.bu{background:var(--navy-bg);color:var(--navy-mid);border-color:var(--navy-bd)}
@@ -310,10 +318,13 @@ ul.pts li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3
     </div>
   </div>
 
-  <div class="rule3 mb">
-    <div class="rule r"><h3>Approved tools only</h3><p>Only Group IT-approved AI tools may be used for company work. Personal or free subscriptions are banned for business data.</p></div>
-    <div class="rule g"><h3>Humans stay accountable</h3><p>AI output is advisory only. Every AI-assisted evaluation or decision requires a documented human review step.</p></div>
-    <div class="rule a"><h3>Check data before you paste</h3><p>Assess data confidentiality before inputting into any AI tool. Strictly Confidential data requires special approval.</p></div>
+  <p class="sec-kicker" style="margin-top:1.5rem;margin-bottom:0.625rem">Control points — applies to all</p>
+  <div style="background:var(--bg);border:0.5px solid var(--border);border-radius:var(--rlg);padding:1rem;margin-bottom:1.25rem">
+    <div class="rule3" style="margin-bottom:0">
+      <div class="rule r"><h3>Approved tools only</h3><p>Only Group IT-approved AI tools may be used for company work. Personal or free subscriptions are banned for business data.</p></div>
+      <div class="rule g"><h3>Humans stay accountable</h3><p>AI output is advisory only. Every AI-assisted evaluation or decision requires a documented human review step.</p></div>
+      <div class="rule a"><h3>Check data before you paste</h3><p>Assess data confidentiality before inputting into any AI tool. Strictly Confidential data requires special approval.</p></div>
+    </div>
   </div>
 
   <div class="allowed2 mb">
@@ -349,16 +360,28 @@ ul.pts li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3
       </div>
       <div class="at-wrap">
         <div class="at-head">Step 6 approval chain — varies by classification</div>
-        <div class="at-row"><div class="at-clf std">Standard Complexity</div><div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business / Corp Function Head</span></div></div>
-        <div class="at-row"><div class="at-clf hc">High Complexity</div><div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business</span><span class="at-arr">→</span><span class="at-step plus">+ Head of SS &amp; Digital Transformation</span></div></div>
-        <div class="at-row"><div class="at-clf hp">High Criticality &amp; Priority</div><div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business</span><span class="at-arr">→</span><span class="at-step plus">+ Head of SS &amp; Digital Transformation</span><span class="at-arr">→</span><span class="at-step plus">+ Head of GCC</span><span class="at-arr">→</span><span class="at-step plus">+ Group CFO</span></div></div>
-        <div class="at-row"><div class="at-clf hi">High Investment Value ≥ USD 1M</div><div class="at-chain"><span class="at-step bu">Full chain above</span><span class="at-arr">→</span><span class="at-step ai">+ AI Committee</span></div></div>
+        <div class="at-row">
+          <div class="at-clf std"><div class="at-clf-top"><div class="at-dot"></div><div class="at-clf-name">Standard Complexity</div></div><div class="at-clf-sub">Single BU · &lt;200 man-days<br>No system integration</div></div>
+          <div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business / Corp Function Head</span></div>
+        </div>
+        <div class="at-row">
+          <div class="at-clf hc"><div class="at-clf-top"><div class="at-dot"></div><div class="at-clf-name">High Complexity</div></div><div class="at-clf-sub">Multi-BU · ≥200 man-days<br>And/or system integration</div></div>
+          <div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business</span><span class="at-arr">→</span><span class="at-step plus">+ Head of SS &amp; Digital Transformation</span></div>
+        </div>
+        <div class="at-row">
+          <div class="at-clf hp"><div class="at-clf-top"><div class="at-dot"></div><div class="at-clf-name">High Criticality &amp; Priority</div></div><div class="at-clf-sub">Ops continuity risk<br>Regulatory/legal compliance impact</div></div>
+          <div class="at-chain"><span class="at-step bu">Requestor (min. L17)</span><span class="at-arr">→</span><span class="at-step bu">Head of Business</span><span class="at-arr">→</span><span class="at-step plus">+ Head of SS &amp; Digital Transformation</span><span class="at-arr">→</span><span class="at-step plus">+ Head of GCC</span><span class="at-arr">→</span><span class="at-step plus">+ Group CFO</span></div>
+        </div>
+        <div class="at-row">
+          <div class="at-clf hi"><div class="at-clf-top"><div class="at-dot"></div><div class="at-clf-name">High Investment Value</div></div><div class="at-clf-sub">Any complexity<br>Threshold is investment value alone</div></div>
+          <div class="at-chain"><span class="at-step bu">Full chain above</span><span class="at-arr">→</span><span class="at-step ai">+ AI Committee</span></div>
+        </div>
       </div>
     </div>
-  </div>
 
   <div class="footer"><span>G-GCC-P-018 Artificial Intelligence Use and Development Policy — Golden Agri-Resources Ltd</span><span>Effective 29 April 2026 · Classification: GCC</span></div>
-</div>
+
+</div></div>
 
 <!-- PANE 2 -->
 <div id="p2" class="pane">
@@ -427,7 +450,7 @@ ul.pts li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3
         <tr><td><div class="clf-tag std"><div class="clf-dot d-std"></div>Standard Complexity</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Single BU · &lt;200 man-days · no system integration</div></td><td style="font-size:12px;color:var(--text2)">&lt; USD 1M</td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td></tr>
         <tr><td><div class="clf-tag hc"><div class="clf-dot d-hc"></div>High Complexity</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Multi-BU · ≥200 man-days · and/or system integration</div></td><td style="font-size:12px;color:var(--text2)">&lt; USD 1M</td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td></tr>
         <tr><td><div class="clf-tag hp"><div class="clf-dot d-hp"></div>High Criticality &amp; Priority</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Ops continuity risk · regulatory/legal compliance impact</div></td><td style="font-size:12px;color:var(--text2)">&lt; USD 1M</td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td><td class="chk-cell"><div class="chk-no"><svg viewBox="0 0 12 12"><line x1="3" y1="3" x2="9" y2="9"/><line x1="9" y1="3" x2="3" y2="9"/></svg></div></td></tr>
-        <tr style="background:var(--bg2)"><td><div class="clf-tag hi"><div class="clf-dot d-hi"></div>High Investment Value</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Any complexity — threshold is investment value alone</div></td><td style="font-size:12px;font-weight:600;color:var(--red-mid)">≥ USD 1M</td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td></tr>
+        <tr><td><div class="clf-tag hi"><div class="clf-dot d-hi"></div>High Investment Value</div><div style="font-size:11px;color:var(--text3);margin-top:3px">Any complexity — threshold is investment value alone</div></td><td style="font-size:12px;font-weight:600;color:var(--red-mid)">≥ USD 1M</td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td><td class="chk-cell"><div class="chk-yes"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div></td></tr>
       </tbody>
     </table>
     <div class="matrix-note"><strong>Sequence for ≥ USD 1M:</strong> Group Review assesses first → AI Committee approves. Contract cannot be executed until AI Committee approval is in place. &nbsp;|&nbsp; <strong>Important:</strong> use total cumulative contract value, not annual cost, for the USD 1M threshold.</div>
@@ -463,15 +486,7 @@ ul.pts li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3
         <div class="clf-field"><div class="clf-flbl">Approval(s) obtained</div><div class="clf-fval ph">List approvers and dates</div></div>
         <div class="clf-field"><div class="clf-flbl">Group Review required?</div><div class="clf-fval ph">Yes / No — confirm with TPO</div></div>
       </div>
-      <div class="clf-class-row">
-        <div class="clf-clbl">Classification</div>
-        <div class="clf-pills">
-          <div class="clf-pill std dim" onclick="showClass('std')">Standard Complexity</div>
-          <div class="clf-pill hc dim" onclick="showClass('hc')">High Complexity</div>
-          <div class="clf-pill hp dim" onclick="showClass('hp')">High Criticality &amp; Priority</div>
-          <div class="clf-pill hi dim" onclick="showClass('hi')">High Investment Value ≥ USD 1M</div>
-        </div>
-      </div>
+      <div class="clf-class-row"><div class="clf-clbl">Classification</div><div class="clf-pills"><div class="clf-pill std dim" onclick="showClass('std')">Standard Complexity</div><div class="clf-pill hc dim" onclick="showClass('hc')">High Complexity</div><div class="clf-pill hp dim" onclick="showClass('hp')">High Criticality &amp; Priority</div><div class="clf-pill hi dim" onclick="showClass('hi')">High Investment Value ≥ USD 1M</div></div></div>
       <div id="chain-std" class="clf-chain std"><div class="clf-chain-lbl">Approval path</div><div class="clf-steps"><span class="clf-cstep">Requestor (min. Level 17)</span><span class="clf-cstep">Head of Business / Corp Function Head</span></div><div class="clf-cnote">Group Review not required. AI Committee not required.</div></div>
       <div id="chain-hc" class="clf-chain hc"><div class="clf-chain-lbl">Approval path</div><div class="clf-steps"><span class="clf-cstep">Requestor (min. Level 17)</span><span class="clf-cstep">Head of Business</span><span class="clf-cstep">Head of SS &amp; Digital Transformation</span></div><div class="clf-cnote">Group Review required. AI Committee not required. Bi-annual IT Committee status updates required post go-live.</div></div>
       <div id="chain-hp" class="clf-chain hp"><div class="clf-chain-lbl">Approval path</div><div class="clf-steps"><span class="clf-cstep">Requestor (min. Level 17)</span><span class="clf-cstep">Head of Business</span><span class="clf-cstep">Head of SS &amp; Digital Transformation</span><span class="clf-cstep">Head of GCC</span><span class="clf-cstep">Group CFO</span></div><div class="clf-cnote">Group Review required. AI Committee not required. Procurement participates as member by relevance.</div></div>
@@ -577,6 +592,8 @@ ul.pts li::before{content:"";position:absolute;left:0;top:7px;width:3px;height:3
 
   <div class="footer"><span>G-GCC-P-018 — Open Questions for Resolution</span><span>Raise before next sourcing cycle · Internal use only</span></div>
 </div>
+
+
 
 </div>
 
